@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+    <title>:-)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div>
+            <img src="imagens/hacker.png" alt="hackerimg" class="imghacker">
+        </div>
+        <div class="question">E o pix, nadha aindha?</div>
+        <div class="button-container">
+            <a href="sim.html" target="_blank" class="button" id="simButton">Sim</a>
+            <button class="button" id="naoButton" onclick="redirecionar()">Não</button>
+        </div>
+    </div>
+
+    <script>
+        const naoButton = document.getElementById('naoButton');
+        const bravoImage = document.getElementById('bravoImage');
+        let moveCount = 0;
+
+        naoButton.addEventListener('mouseover', () => {
+            if (moveCount < 10) {
+                moveButton(naoButton);
+                moveCount++;
+            } else {
+                window.location.href = "nao.html"; // Redireciona após 10 movimentos do botão "Não"
+            }
+        });
+
+        function moveButton(button) {
+            const maxX = window.innerWidth - button.offsetWidth;
+            const maxY = window.innerHeight - button.offsetHeight;
+
+            // Gera coordenadas aleatórias dentro dos limites da tela
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            // Garante que o botão não saia da tela
+            const clampedX = Math.min(Math.max(randomX, 0), maxX);
+            const clampedY = Math.min(Math.max(randomY, 0), maxY);
+
+            button.style.left = clampedX + 'px';
+            button.style.top = clampedY + 'px';
+        }
+
+        function redirecionar() {
+            window.location.href = "nao.html";
+        }
+    </script>
+</body>
+</html>
